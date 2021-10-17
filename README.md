@@ -42,6 +42,10 @@
 
 0. Clone repo
 
+```
+git clone https://github.com/minhthong582000/LH-back-end.git
+```
+
 1. Di chuyen vao thu muc LH-back-end
 
 ```

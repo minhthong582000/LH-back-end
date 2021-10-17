@@ -128,6 +128,10 @@ docker-compose up -d
 
 - admin: http://localhost:8000/admin
 
+## Database hien tai (Dang Update...)
+
+![db_table](./images/db1.png)
+
 ## Contributing
 
 Day la du an hoan toan Open. Moi nguoi co the thoai mai:

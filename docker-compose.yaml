@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    env_file:
+      - ./mysql.env
+    networks:
+      - api
+  api:
+    build: .
+    volumes:
+      - api_data:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    env_file:
+      - ./dev.env
+    networks:
+      - api
+
+volumes:
+  db_data:
+  api_data:
+
+networks:
+  api:

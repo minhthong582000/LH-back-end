@@ -1,5 +1,14 @@
 #!/bin/bash
 
+function wait_for_db()
+{
+  while ! python manage.py sqlflush > /dev/null 2>&1 ;do
+    echo "Waiting for the db to be ready."
+    sleep 1
+  done
+}
+wait_for_db
+
 # Collect static files
 # echo "Collect static files"
 # python manage.py collectstatic --noinput

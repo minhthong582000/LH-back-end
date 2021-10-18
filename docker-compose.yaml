@@ -19,8 +19,6 @@ services:
       retries: 10
   api:
     build: .
-    volumes:
-      - api_data:/code
     ports:
       - "8000:8000"
     depends_on:
@@ -33,7 +31,6 @@ services:
 
 volumes:
   db_data:
-  api_data:
 
 networks:
   api:

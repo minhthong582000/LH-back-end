@@ -1,7 +1,7 @@
 from rest_framework import generics, status
 from rest_framework import viewsets
 from rest_framework.exceptions import (
-    ValidationError, NotFound
+    ValidationError
 )
 from rest_framework.response import Response
 

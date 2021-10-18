@@ -11,6 +11,7 @@ class RecipeSerializer(serializers.ModelSerializer):
             'id', 
             'name', 
             'description', 
+            'calo',
             'ingredients', 
             'image',
             'directions',

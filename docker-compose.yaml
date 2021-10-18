@@ -12,6 +12,11 @@ services:
       - ./mysql.env
     networks:
       - api
+    healthcheck:
+      test: "mysqladmin ping -h localhost -u $$MYSQL_USER --password=$$MYSQL_PASSWORD"
+      timeout: 20s
+      interval: 2s
+      retries: 10
   api:
     build: .
     volumes:
@@ -19,7 +24,8 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     env_file:
       - ./dev.env
     networks:

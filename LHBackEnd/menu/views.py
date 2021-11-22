@@ -161,7 +161,7 @@ class PublicRecipes(generics.ListAPIView):
     serializer_class = RecipeSerializer
     
     def get_queryset(self):
-        queryset = Recipe.objects.all().filter(is_public=True)
+        queryset = Recipe.objects.all().filter()
         return queryset
 
 class PublicRecipesDetail(generics.RetrieveAPIView):

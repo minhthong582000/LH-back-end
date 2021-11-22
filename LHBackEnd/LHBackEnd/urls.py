@@ -34,5 +34,8 @@ urlpatterns = [
     url(r'api_docs/', schema_swagger_view),
     url(r'docs/', include_docs_urls(title='Recipes API')),
     url(r'schema', schema_view),
+    url(r'api/user/', include('userprofile.urls', namespace='userprofile')),
+    url(r'api/auth/', include('registration.urls')),
+    url(r'api/course/', include('exercise.urls'))
 ]
 

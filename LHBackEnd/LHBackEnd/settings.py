@@ -27,13 +27,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-REST_FRAMEWORK = { 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' }
+REST_FRAMEWORK = { 
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_AUTHENTICATION_CLASSES': ( 'knox.auth.TokenAuthentication', ),
+    'DATETIME_FORMAT': "%m/%d/%Y %H:%M:%S",
+}
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'rest_framework.authtoken',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -41,7 +45,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_swagger',
     'corsheaders',
-    'menu'
+    'menu',
+    'registration',
+    'userprofile',
+    'exercise',
+    'knox',
 ]
 
 MIDDLEWARE = [
@@ -49,16 +57,19 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+APPEND_SLASH = False
+
 # CORS setting
 CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'LHBackEnd.urls'
+
+AUTH_USER_MODEL = 'userprofile.User'
 
 TEMPLATES = [
     {
@@ -84,7 +95,9 @@ WSGI_APPLICATION = 'LHBackEnd.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
+options = {}
+if (os.environ.get("CHARSET", "")):
+    options = {'charset': os.environ.get("CHARSET", "")}
 DATABASES = {
     "default": {
         "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"), 
@@ -93,7 +106,7 @@ DATABASES = {
         "PASSWORD": os.environ.get("SQL_PASSWORD", ""),
         "HOST": os.environ.get("SQL_HOST", ""),
         "PORT": os.environ.get("SQL_PORT", ""),
-        'OPTIONS': {'charset': 'utf8mb4'},
+        'OPTIONS': options,
     }
 }
 
@@ -140,3 +153,15 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'api_key': {
+            'type': 'apiKey',
+            'in': 'header',
+            'name': 'Authorization'
+        }
+    },
+    'USE_SESSION_AUTH': False,
+    'JSON_EDITOR': True,
+}

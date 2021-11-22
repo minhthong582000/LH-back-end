@@ -18,6 +18,7 @@ class Recipe(models.Model):
                                  on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     calo = models.FloatField(blank=True, default=0)
+    fat = models.FloatField(blank=True, default=0)
     description = models.TextField(blank=True)
     ingredients = models.TextField()
     directions = models.TextField()

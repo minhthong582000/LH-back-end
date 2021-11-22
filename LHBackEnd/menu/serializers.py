@@ -12,12 +12,13 @@ class RecipeSerializer(serializers.ModelSerializer):
             'name', 
             'description', 
             'calo',
+            'fat',
             'ingredients', 
             'image',
             'directions',
             'is_public',
             'created_at', 
-            'updated_at'
+            'updated_at',
             )
 
 

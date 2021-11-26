@@ -6,6 +6,7 @@ class Category(models.Model):
     
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
+    image = models.URLField(blank=True, max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -19,10 +20,12 @@ class Recipe(models.Model):
     name = models.CharField(max_length=100)
     calo = models.FloatField(blank=True, default=0)
     fat = models.FloatField(blank=True, default=0)
+    protein = models.FloatField(blank=True, default=0)
+    carbohydrates = models.FloatField(blank=True, default=0)
     description = models.TextField(blank=True)
     ingredients = models.TextField()
     directions = models.TextField()
-    image = models.URLField(max_length=200)
+    image = models.URLField(max_length=200, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_public = models.BooleanField(default=False)

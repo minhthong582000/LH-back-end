@@ -13,6 +13,8 @@ class RecipeSerializer(serializers.ModelSerializer):
             'description', 
             'calo',
             'fat',
+            'protein', 
+            'carbohydrates',
             'ingredients', 
             'image',
             'directions',
@@ -31,6 +33,7 @@ class CategorySerializer(serializers.ModelSerializer):
             'id', 
             'name', 
             'description', 
+            'image',
             'recipes',
             'created_at', 
             'updated_at'

@@ -22,8 +22,8 @@ class User(AbstractUser):
     is_teacher = models.BooleanField(default=False)
     email = models.CharField(max_length=200, blank=True)
     name = models.CharField(max_length=200, blank=True)
-    gender = models.CharField(max_length=140)
-    about_me = models.TextField()
+    gender = models.CharField(max_length=140, blank=True)
+    about_me = models.TextField(blank=True)
     credit = models.FloatField(blank=False, default=0)
 
 class Favorite(models.Model):

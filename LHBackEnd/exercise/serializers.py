@@ -1,7 +1,7 @@
 from userprofile.models import User
 from rest_framework import serializers
 
-from .models import Courses
+from .models import Courses, Schedule
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -9,6 +9,10 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         model = User
         fields = ('username', 'name', 'email',)
 
+class ScheduleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Schedule
+        fields = '__all__'
 
 class CourseSerializer(serializers.ModelSerializer):
     teacher = UserSerializer(required=False)

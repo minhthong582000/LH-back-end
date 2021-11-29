@@ -29,6 +29,7 @@ class User(AbstractUser):
 class Favorite(models.Model):
     user = models.OneToOneField(User, related_name='favorites', on_delete=models.CASCADE)
     favorites = models.ManyToManyField(Recipe)
+    date = models.DateTimeField(auto_now_add=True, blank=True)
     def __str__(self):
         return "%s's favorites" % self.user
 

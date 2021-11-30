@@ -154,6 +154,28 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "get profile by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/user/profile/1/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"profile",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -255,7 +277,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"title\": \"Oke chua\",\n  \"number\": 4,\n  \"description\": \"Giup giam can nhanh\",\n  \"start_date\": \"2021-11-01\",\n  \"end_date\": \"2021-11-02\",\n  \"slug\": \"xexxxx\"\n}",
+							"raw": "{\n  \"title\": \"Oke chua\",\n  \"number\": 4,\n  \"description\": \"Giup giam can nhanh\",\n  \"start_date\": \"2021-11-01\",\n  \"end_date\": \"2021-11-02\",\n  \"slug\": \"xexxxx-33\",\n  \"members\": [\n      \"thong12345678\", \"thongpro\", \"thongdz\", \"thong12\"\n  ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -263,7 +285,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/course/details/xexxxx-1/",
+							"raw": "localhost:8000/api/course/details/xexxxx-33/",
 							"host": [
 								"localhost"
 							],
@@ -272,7 +294,7 @@
 								"api",
 								"course",
 								"details",
-								"xexxxx-1",
+								"xexxxx-33",
 								""
 							]
 						}
@@ -664,6 +686,83 @@
 								"favorites",
 								""
 							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tao Lich",
+			"item": [
+				{
+					"name": "Lay tat ca lich",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Lay lich bang userid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/course/schedule-user/1/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"course",
+								"schedule-user",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Them lich cho user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": 2,\n    \"recipe\": 3,\n    \"date\": \"2021-11-02\",\n    \"eat_ad\": \"chieu\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/course/schedule/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"course",
+								"schedule",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Xoa lich bang id cua lich",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": ""
 						}
 					},
 					"response": []

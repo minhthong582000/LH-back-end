@@ -107,5 +107,9 @@ class UserSearchList(generics.ListAPIView):
     
     def get_queryset(self):
         query = self.kwargs['query']
-        queryset = User.objects.filter(username__contains=query)
+
+        if query == "all":
+            queryset = User.objects.all()
+        else:
+            queryset = User.objects.filter(username__contains=query)
         return queryset

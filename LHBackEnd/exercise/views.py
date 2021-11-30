@@ -70,12 +70,23 @@ class ScheduleList(APIView):
         return Response(schedule_serializer.data)
 
     def post(self, request):
-        schedule_serializer = ScheduleSerializer(data=request.data, context={'request': request})
-        if schedule_serializer.is_valid():
-            schedule_serializer.save()
-        else:
-            return Response(schedule_serializer.errors)
-        return Response(schedule_serializer.data)
+        print(request.data)
+        ll = []
+        for r in request.data["recipe"]:
+            llist = {}
+            llist["user"] = request.data["user"]
+            llist["recipe"] = r["recipe"]
+            llist["eat_at"] = r["eat_at"]
+            llist["date"] = request.data["date"]
+            ll.append(llist)
+
+        for i in ll:
+            schedule_serializer = ScheduleSerializer(data=i, context={'request': request})
+            if schedule_serializer.is_valid():
+                schedule_serializer.save()
+            else:
+                return Response(schedule_serializer.errors)
+        return Response(status=status.HTTP_201_CREATED)
 
 class ScheduleDetail(APIView):
     serializer_class = ScheduleSerializer
@@ -86,7 +97,7 @@ class ScheduleDetail(APIView):
         schedule_serializer = ScheduleSerializer(schedule, context={'request': request}, many=True)
         return Response(schedule_serializer.data)
 
-    def delete(self, request, userid):
-        schedule = utils.get_schedule_by_pk(userid)
+    def delete(self, request, pk):
+        schedule = utils.get_schedule_by_pk(pk)
         schedule.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

@@ -13,9 +13,6 @@ wait_for_db
 # echo "Collect static files"
 # python manage.py collectstatic --noinput
 
-echo "Flush any previous unsaved manage.py command"
-python manage.py flush --no-input
-
 # Apply database migrations
 echo "Apply database migrations"
 python manage.py migrate

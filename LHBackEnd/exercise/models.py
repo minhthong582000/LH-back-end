@@ -31,6 +31,7 @@ class Schedule(models.Model):
 class Courses(models.Model):
     title = models.CharField(max_length=200)
     number = models.CharField(max_length=10)
+    image = models.URLField(blank=True, max_length=200)
     description = models.TextField()
     teacher = models.ForeignKey(User, null=True, blank=True, on_delete=models.DO_NOTHING)
     members = models.ManyToManyField(User, related_name=_('Members'), null=True, blank=True)
